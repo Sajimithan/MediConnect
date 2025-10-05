@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }} - Professional Healthcare Management</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
@@ -21,11 +21,7 @@
             <div class="flex justify-between h-16">
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
-                        <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
-                        </div>
+                        <x-application-logo class="w-10 h-10 fill-current text-indigo-600" />
                         <span class="ml-3 text-xl font-bold text-gray-900">HealthCare Pro</span>
                     </div>
                 </div>
@@ -162,8 +158,10 @@
                 <!-- Feature 5 -->
                 <div class="bg-gradient-to-br from-red-50 to-pink-50 p-8 rounded-2xl hover:shadow-xl transition duration-300">
                     <div class="w-16 h-16 bg-red-600 rounded-2xl flex items-center justify-center mb-6">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                        <svg class="w-8 h-8 text-white" viewBox="0 0 100 100" fill="currentColor">
+                            <circle cx="50" cy="50" r="45" fill="currentColor" opacity="0.1"/>
+                            <rect x="45" y="25" width="10" height="50" fill="currentColor" rx="2"/>
+                            <rect x="25" y="45" width="50" height="10" fill="currentColor" rx="2"/>
                         </svg>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-4">Health Tips</h3>
@@ -200,8 +198,10 @@
                 <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
                     <div class="p-6 text-center">
                         <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            <svg class="w-10 h-10 text-blue-600" viewBox="0 0 100 100" fill="currentColor">
+                                <circle cx="50" cy="50" r="45" fill="currentColor" opacity="0.1"/>
+                                <rect x="45" y="25" width="10" height="50" fill="currentColor" rx="2"/>
+                                <rect x="25" y="45" width="50" height="10" fill="currentColor" rx="2"/>
                             </svg>
                         </div>
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">Doctor</h3>
@@ -216,8 +216,10 @@
                 <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
                     <div class="p-6 text-center">
                         <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            <svg class="w-10 h-10 text-green-600" viewBox="0 0 100 100" fill="currentColor">
+                                <circle cx="50" cy="50" r="45" fill="currentColor" opacity="0.1"/>
+                                <rect x="45" y="25" width="10" height="50" fill="currentColor" rx="2"/>
+                                <rect x="25" y="45" width="50" height="10" fill="currentColor" rx="2"/>
                             </svg>
                         </div>
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">Nurse</h3>
@@ -232,8 +234,10 @@
                 <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-2">
                     <div class="p-6 text-center">
                         <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg class="w-10 h-10 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            <svg class="w-10 h-10 text-gray-600" viewBox="0 0 100 100" fill="currentColor">
+                                <circle cx="50" cy="50" r="45" fill="currentColor" opacity="0.1"/>
+                                <rect x="45" y="25" width="10" height="50" fill="currentColor" rx="2"/>
+                                <rect x="25" y="45" width="50" height="10" fill="currentColor" rx="2"/>
                             </svg>
                         </div>
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">Patient</h3>
@@ -247,14 +251,14 @@
         </div>
     </section>
 
-    <!-- Health Tips Section -->
+            <!-- Health Tips Section -->
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4">Today's Health Tips</h2>
                 <p class="text-xl text-gray-600">Stay informed with expert health advice and wellness tips</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="health-tips-container">
                 <!-- Loading state -->
                 <div class="text-center text-gray-500 col-span-full">
@@ -265,17 +269,13 @@
         </div>
     </section>
 
-    <!-- Footer -->
+        <!-- Footer -->
     <footer class="bg-gray-900 text-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
                     <div class="flex items-center mb-4">
-                        <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                            </svg>
-                        </div>
+                        <x-application-logo class="w-10 h-10 fill-current text-white" />
                         <span class="ml-3 text-xl font-bold">HealthCare Pro</span>
                     </div>
                     <p class="text-gray-400">Professional healthcare management platform for modern medical facilities.</p>
@@ -316,7 +316,7 @@
                 <p>&copy; 2024 HealthCare Pro. All rights reserved. Built with modern healthcare standards in mind.</p>
             </div>
         </div>
-    </footer>
+        </footer>
 
     <!-- Registration Modal -->
     <div id="registrationModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden z-50">
@@ -401,8 +401,10 @@
                 <div class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-8 hover:shadow-xl transition duration-300">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
-                            <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            <svg class="w-6 h-6 text-indigo-600" viewBox="0 0 100 100" fill="currentColor">
+                                <circle cx="50" cy="50" r="45" fill="currentColor" opacity="0.1"/>
+                                <rect x="45" y="25" width="10" height="50" fill="currentColor" rx="2"/>
+                                <rect x="25" y="45" width="50" height="10" fill="currentColor" rx="2"/>
                             </svg>
                         </div>
                         <div>
@@ -434,5 +436,5 @@
             }
         });
     </script>
-</body>
+    </body>
 </html>

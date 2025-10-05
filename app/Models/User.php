@@ -36,6 +36,11 @@ class User extends Authenticatable
         'last_checkup_date',
         'insurance_provider',
         'insurance_number',
+        'specialization',
+        'license_number',
+        'years_experience',
+        'hospital_affiliation',
+        'bio',
     ];
 
     /**
