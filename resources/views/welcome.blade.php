@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }} - Professional Healthcare Management</title>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
+        <!-- Fonts -->
+        <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
@@ -251,14 +251,14 @@
         </div>
     </section>
 
-    <!-- Health Tips Section -->
+            <!-- Health Tips Section -->
     <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-gray-900 mb-4">Today's Health Tips</h2>
                 <p class="text-xl text-gray-600">Stay informed with expert health advice and wellness tips</p>
             </div>
-            
+
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="health-tips-container">
                 <!-- Loading state -->
                 <div class="text-center text-gray-500 col-span-full">
@@ -269,7 +269,7 @@
         </div>
     </section>
 
-    <!-- Footer -->
+        <!-- Footer -->
     <footer class="bg-gray-900 text-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -316,7 +316,7 @@
                 <p>&copy; 2024 HealthCare Pro. All rights reserved. Built with modern healthcare standards in mind.</p>
             </div>
         </div>
-    </footer>
+        </footer>
 
     <!-- Registration Modal -->
     <div id="registrationModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden z-50">
@@ -436,5 +436,5 @@
             }
         });
     </script>
-</body>
+    </body>
 </html>
