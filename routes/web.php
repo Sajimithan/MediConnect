@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\HealthTipController;
+use App\Http\Controllers\PatientRecordController;
 
 /*
 |----------------------------------------------------------------------
@@ -63,6 +64,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::patch('/health-tips/{healthTip}', [HealthTipController::class, 'update'])->name('health-tips.update');
         Route::delete('/health-tips/{healthTip}', [HealthTipController::class, 'destroy'])->name('health-tips.destroy');
     });
+    
+    // Patient Records Management (doctor and admin only)
+    Route::middleware(['role:admin,doctor'])->group(function () {
+        Route::resource('patient-records', PatientRecordController::class);
+        Route::get('/patient-records/patient/{patientId}', [PatientRecordController::class, 'patientRecords'])->name('patient-records.patient-history');
+        Route::get('/patient-records/create/{patientId?}', [PatientRecordController::class, 'create'])->name('patient-records.create');
+    });
+    
+    // Patient view of their own records
+    Route::get('/my-records', [PatientRecordController::class, 'patientView'])->name('patient-records.patient-view');
     
     // Admin only routes
     Route::middleware(['role:admin'])->group(function () {
