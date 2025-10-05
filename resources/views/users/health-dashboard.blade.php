@@ -40,8 +40,8 @@
                             </svg>
                         </div>
                         <div class="ml-4">
-                            <p class="text-sm font-medium text-gray-600">Active Patients</p>
-                            <p class="text-2xl font-semibold text-gray-900">24</p>
+                            <p class="text-sm font-medium text-gray-600">Total Patients</p>
+                            <p class="text-2xl font-semibold text-gray-900">{{ \App\Models\User::where('role', 'patient')->count() }}</p>
                         </div>
                     </div>
                 </div>
@@ -50,12 +50,12 @@
                     <div class="flex items-center">
                         <div class="p-3 rounded-full bg-green-100">
                             <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                             </svg>
                         </div>
                         <div class="ml-4">
-                            <p class="text-sm font-medium text-gray-600">Healthy Patients</p>
-                            <p class="text-2xl font-semibold text-gray-900">18</p>
+                            <p class="text-sm font-medium text-gray-600">Medical Records</p>
+                            <p class="text-2xl font-semibold text-gray-900">{{ \App\Models\PatientRecord::where('doctor_id', Auth::id())->count() }}</p>
                         </div>
                     </div>
                 </div>
@@ -64,12 +64,12 @@
                     <div class="flex items-center">
                         <div class="p-3 rounded-full bg-yellow-100">
                             <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
                         <div class="ml-4">
-                            <p class="text-sm font-medium text-gray-600">Need Attention</p>
-                            <p class="text-2xl font-semibold text-gray-900">6</p>
+                            <p class="text-sm font-medium text-gray-600">Active Cases</p>
+                            <p class="text-2xl font-semibold text-gray-900">{{ \App\Models\PatientRecord::where('doctor_id', Auth::id())->where('status', 'active')->count() }}</p>
                         </div>
                     </div>
                 </div>
@@ -82,93 +82,175 @@
                             </svg>
                         </div>
                         <div class="ml-4">
-                            <p class="text-sm font-medium text-gray-600">Today's Appts</p>
-                            <p class="text-2xl font-semibold text-gray-900">5</p>
+                            <p class="text-sm font-medium text-gray-600">Today's Visits</p>
+                            <p class="text-2xl font-semibold text-gray-900">{{ \App\Models\PatientRecord::where('doctor_id', Auth::id())->whereDate('visit_date', today())->count() }}</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Patient Management Tools -->
+            <!-- Quick Actions -->
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 mb-8">
                 <div class="p-6 border-b border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-900">Patient Management Tools</h3>
-                    <p class="text-gray-600 mt-1">Quick access to patient care features</p>
+                    <h3 class="text-lg font-semibold text-gray-900">Quick Actions</h3>
+                    <p class="text-gray-600 mt-1">Common patient care tasks</p>
                 </div>
                 <div class="p-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <a href="{{ route('patient-records.index') }}" class="flex items-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <a href="{{ route('patient-records.create') }}" class="flex items-center p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors">
                             <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
                                 <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-gray-900">New Record</p>
+                                <p class="text-xs text-gray-500">Create patient record</p>
+                            </div>
+                        </a>
+
+                        <a href="{{ route('patient-records.index') }}" class="flex items-center p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
+                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                                 </svg>
                             </div>
                             <div class="ml-3">
-                                <p class="text-sm font-medium text-gray-900">Patient Records</p>
-                                <p class="text-xs text-gray-500">View and manage patient records</p>
+                                <p class="text-sm font-medium text-gray-900">All Records</p>
+                                <p class="text-xs text-gray-500">View all records</p>
                             </div>
                         </a>
 
-                        <a href="#" class="flex items-center p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors">
-                            <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                                <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-sm font-medium text-gray-900">Health Monitoring</p>
-                                <p class="text-xs text-gray-500">Track patient metrics</p>
-                            </div>
-                        </a>
-
-                        <a href="#" class="flex items-center p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors">
+                        <a href="{{ route('health-tips.create') }}" class="flex items-center p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors">
                             <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
                                 <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                                 </svg>
                             </div>
                             <div class="ml-3">
-                                <p class="text-sm font-medium text-gray-900">Schedule</p>
-                                <p class="text-xs text-gray-500">Manage appointments</p>
+                                <p class="text-sm font-medium text-gray-900">Health Tip</p>
+                                <p class="text-xs text-gray-500">Create health advice</p>
                             </div>
                         </a>
 
-                        <a href="#" class="flex items-center p-4 bg-yellow-50 rounded-lg hover:bg-yellow-100 transition-colors">
+                        <a href="{{ route('users.index') }}" class="flex items-center p-4 bg-yellow-50 rounded-lg hover:bg-yellow-100 transition-colors">
                             <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
                                 <svg class="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                                 </svg>
                             </div>
                             <div class="ml-3">
-                                <p class="text-sm font-medium text-gray-900">Reports</p>
-                                <p class="text-xs text-gray-500">Generate health reports</p>
-                            </div>
-                        </a>
-
-                        <a href="#" class="flex items-center p-4 bg-red-50 rounded-lg hover:bg-red-100 transition-colors">
-                            <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-                                <svg class="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.34 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-                                </svg>
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-sm font-medium text-gray-900">Alerts</p>
-                                <p class="text-xs text-gray-500">Patient notifications</p>
-                            </div>
-                        </a>
-
-                        <a href="#" class="flex items-center p-4 bg-indigo-50 rounded-lg hover:bg-indigo-100 transition-colors">
-                            <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
-                                <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                                </svg>
-                            </div>
-                            <div class="ml-3">
-                                <p class="text-sm font-medium text-gray-900">Analytics</p>
-                                <p class="text-xs text-gray-500">Health insights</p>
+                                <p class="text-sm font-medium text-gray-900">Patient List</p>
+                                <p class="text-xs text-gray-500">View all patients</p>
                             </div>
                         </a>
                     </div>
+                </div>
+            </div>
+
+            <!-- Recent Patient Records -->
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 mb-8">
+                <div class="p-6 border-b border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="text-lg font-semibold text-gray-900">Recent Patient Records</h3>
+                            <p class="text-gray-600 mt-1">Latest medical records and visits</p>
+                        </div>
+                        <a href="{{ route('patient-records.index') }}" 
+                           class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">
+                            View All →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Patient</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Visit Date</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Complaint</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            @php
+                                $recentRecords = \App\Models\PatientRecord::with(['patient'])
+                                    ->where('doctor_id', Auth::id())
+                                    ->orderBy('visit_date', 'desc')
+                                    ->limit(5)
+                                    ->get();
+                            @endphp
+                            
+                            @forelse($recentRecords as $record)
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center">
+                                            <span class="text-xs font-medium text-indigo-600">{{ substr($record->patient->name, 0, 1) }}</span>
+                                        </div>
+                                        <div class="ml-3">
+                                            <div class="text-sm font-medium text-gray-900">{{ $record->patient->name }}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                    {{ $record->visit_date->format('M d, Y') }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+                                        @if($record->visit_type === 'emergency') bg-red-100 text-red-800
+                                        @elseif($record->visit_type === 'consultation') bg-blue-100 text-blue-800
+                                        @elseif($record->visit_type === 'follow_up') bg-green-100 text-green-800
+                                        @else bg-gray-100 text-gray-800 @endif">
+                                        {{ ucfirst(str_replace('_', ' ', $record->visit_type)) }}
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-gray-900">
+                                    <div class="max-w-xs truncate">
+                                        {{ $record->chief_complaint ?? 'No complaint recorded' }}
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium
+                                        @if($record->status === 'completed') bg-green-100 text-green-800
+                                        @elseif($record->status === 'active') bg-yellow-100 text-yellow-800
+                                        @else bg-red-100 text-red-800 @endif">
+                                        {{ ucfirst($record->status) }}
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <div class="flex space-x-2">
+                                        <a href="{{ route('patient-records.show', $record->id) }}" 
+                                           class="text-indigo-600 hover:text-indigo-900">View</a>
+                                        <a href="{{ route('patient-records.edit', $record->id) }}" 
+                                           class="text-green-600 hover:text-green-900">Edit</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="6" class="px-6 py-12 text-center">
+                                    <div class="text-gray-500">
+                                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                        </svg>
+                                        <h3 class="mt-2 text-sm font-medium text-gray-900">No patient records yet</h3>
+                                        <p class="mt-1 text-sm text-gray-500">Start by creating your first patient record.</p>
+                                        <div class="mt-6">
+                                            <a href="{{ route('patient-records.create') }}" 
+                                               class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700">
+                                                Create First Record
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -235,23 +317,12 @@
             </div>
             @endif
 
-            <!-- Health Information Form -->
+            @if(!Auth::user()->isDoctor())
+            <!-- Health Information Form for Patients/Nurses -->
             <div class="bg-white rounded-xl shadow-sm border border-gray-200">
                 <div class="p-6 border-b border-gray-200">
-                    <h3 class="text-lg font-semibold text-gray-900">
-                        @if(Auth::user()->isDoctor())
-                            Update Patient Information
-                        @else
-                            Update Health Information
-                        @endif
-                    </h3>
-                    <p class="text-gray-600 mt-1">
-                        @if(Auth::user()->isDoctor())
-                            Modify patient health records and care plans
-                        @else
-                            Keep your health information up to date
-                        @endif
-                    </p>
+                    <h3 class="text-lg font-semibold text-gray-900">Update Health Information</h3>
+                    <p class="text-gray-600 mt-1">Keep your health information up to date</p>
                 </div>
                 <div class="p-6">
                     <form method="POST" action="{{ route('users.update-health') }}" class="space-y-6">
@@ -328,6 +399,7 @@
                     </form>
                 </div>
             </div>
+            @endif
 
             <!-- Health Tips Section -->
             <div class="mt-8 bg-white rounded-xl shadow-sm border border-gray-200">

@@ -106,11 +106,11 @@
                                         </svg>
                                     </div>
                                     <div class="ml-3">
-                                        <p class="text-sm font-medium text-gray-900">Patient Records</p>
-                                        <p class="text-xs text-gray-500">View and manage patient medical records</p>
+                                        <p class="text-sm font-medium text-gray-900">Patient Care</p>
+                                        <p class="text-xs text-gray-500">Manage patient records and care</p>
                                     </div>
                                 </div>
-                                <a href="{{ route('patient-records.index') }}" class="text-blue-600 hover:text-blue-700 text-sm font-medium">
+                                <a href="{{ route('users.health-dashboard') }}" class="text-blue-600 hover:text-blue-700 text-sm font-medium">
                                     View →
                                 </a>
                             </div>
