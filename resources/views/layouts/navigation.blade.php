@@ -18,6 +18,9 @@
                     </x-nav-link>
                     
                     @if(Auth::user()->isDoctor())
+                        <x-nav-link :href="route('patient-records.index')" :active="request()->routeIs('patient-records.*')">
+                            {{ __('Patient Records') }}
+                        </x-nav-link>
                         <x-nav-link :href="route('health-tips.index')" :active="request()->routeIs('health-tips.*')">
                             {{ __('Health Tips') }}
                         </x-nav-link>
@@ -115,6 +118,9 @@
             </x-responsive-nav-link>
             
             @if(Auth::user()->isDoctor())
+                <x-responsive-nav-link :href="route('patient-records.index')" :active="request()->routeIs('patient-records.*')">
+                    {{ __('Patient Records') }}
+                </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('health-tips.index')" :active="request()->routeIs('health-tips.*')">
                     {{ __('Health Tips') }}
                 </x-responsive-nav-link>
